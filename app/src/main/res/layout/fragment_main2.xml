@@ -7,10 +7,10 @@
         tools:context="com.gooch.animationdemo.Main2Fragment">
 
         <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <com.gooch.animationdemo.ProgressAnimView
+            android:id="@+id/pv_anim"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:layout_height="match_parent"/>
 
     </FrameLayout>
 </layout>

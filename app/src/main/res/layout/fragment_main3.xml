@@ -7,10 +7,12 @@
         tools:context="com.gooch.animationdemo.Main3Fragment">
 
         <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <com.gooch.animationdemo.Banner
+            android:id="@+id/banner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:layout_height="300dp">
+
+        </com.gooch.animationdemo.Banner>
 
     </FrameLayout>
 </layout>

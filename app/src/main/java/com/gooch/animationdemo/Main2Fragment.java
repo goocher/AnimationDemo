@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 
 import com.gooch.animationdemo.databinding.FragmentMain2Binding;
 
@@ -29,8 +30,26 @@ public class Main2Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mInflate = DataBindingUtil.inflate(inflater, R.layout.fragment_main2, container, false);
-
+        initView();
         return mInflate.getRoot();
     }
 
+    private void initView() {
+
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            mInflate.pvAnim.setProgress(70f).setInterpolator(new OvershootInterpolator()).doAnimation();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mInflate.pvAnim.setTextSize(getResources().getDimensionPixelSize(R.dimen.pv_textsize));
+        mInflate.pvAnim.setProgress(70f).setInterpolator(new OvershootInterpolator()).doAnimation();
+    }
 }
