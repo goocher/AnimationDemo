@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         fragments.add(new Main2Fragment());
         fragments.add(new Main3Fragment());
         fragments.add(new Main4Fragment());
+        fragments.add(new SketchFragment());
         String[] stringArray = getResources().getStringArray(R.array.title_array);
         MainFragmentAdapter adapter = new MainFragmentAdapter(getSupportFragmentManager(), fragments);
         adapter.setStrings(Arrays.asList(stringArray));
