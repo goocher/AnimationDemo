@@ -116,7 +116,8 @@ public class SketchView extends View implements View.OnTouchListener {
 //		mActivity.getWindowManager().getDefaultDisplay().getMetrics(display);
 //		int screenWidth = display.widthPixels;
 //		int screenHeight = display.heightPixels;
-//		float scale = bitmap.getWidth() / screenWidth > bitmap.getHeight() / screenHeight ? bitmap.getWidth() /
+//		float scale = bitmap.getWidth() / screenWidth > bitmap.getHeight() / screenHeight ? bitmap
+// .getWidth() /
 // screenWidth : bitmap.getHeight() / screenHeight;
 //		int scaledWidth = (int) (bitmap.getWidth() / scale);
 //		int scaledHeight = (int) (bitmap.getHeight() / scale);
@@ -308,6 +309,8 @@ public class SketchView extends View implements View.OnTouchListener {
                 break;
             case ERASER:
                 eraserSize = size;
+                break;
+            default:
                 break;
         }
 

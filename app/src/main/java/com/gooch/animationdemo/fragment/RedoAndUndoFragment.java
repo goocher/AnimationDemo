@@ -36,7 +36,8 @@ public class RedoAndUndoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_redo_and_undo, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_redo_and_undo, container,
+                false);
         mUndoList = new ArrayList<>();
         mContent = new ArrayList<>();
         mBinding.undo.setOnClickListener(new View.OnClickListener() {
