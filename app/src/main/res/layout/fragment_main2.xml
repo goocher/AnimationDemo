@@ -4,7 +4,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.gooch.animationdemo.Main2Fragment">
+        tools:context="com.gooch.animationdemo.fragment.Main2Fragment">
 
         <!-- TODO: Update blank fragment layout -->
         <com.gooch.animationdemo.ProgressAnimView

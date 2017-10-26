@@ -2,10 +2,14 @@
     <string name="app_name">AnimationDemo</string>
     <string-array name="title_array">
         <item>项目1</item>
+        <item>Spen</item>
+        <item>多点触控</item>
         <item>项目2</item>
         <item>项目3</item>
         <item>项目4</item>
         <item>画板</item>
+        <item>snaphelper</item>
+        <item>撤销反撤销</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

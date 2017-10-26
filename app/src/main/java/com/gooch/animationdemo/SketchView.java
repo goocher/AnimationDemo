@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
@@ -53,6 +52,7 @@ public class SketchView extends View implements View.OnTouchListener {
     private int mode = STROKE;
 
     private OnDrawChangedListener onDrawChangedListener;
+    private boolean mCanTouch;
 
 
     public SketchView(Context context, AttributeSet attr) {
@@ -106,22 +106,22 @@ public class SketchView extends View implements View.OnTouchListener {
             bitmap = bitmap.copy(bitmapConfig, true);
         }
         this.bitmap = bitmap;
-		this.bitmap = getScaledBitmap(mActivity, bitmap);
+//		this.bitmap = getScaledBitmap(mActivity, bitmap);
 //		mCanvas = new Canvas(bitmap);
     }
 
 
-	private Bitmap getScaledBitmap(Activity mActivity, Bitmap bitmap) {
-		DisplayMetrics display = new DisplayMetrics();
-		mActivity.getWindowManager().getDefaultDisplay().getMetrics(display);
-		int screenWidth = display.widthPixels;
-		int screenHeight = display.heightPixels;
-		float scale = bitmap.getWidth() / screenWidth > bitmap.getHeight() / screenHeight ? bitmap.getWidth() /
- screenWidth : bitmap.getHeight() / screenHeight;
-		int scaledWidth = (int) (bitmap.getWidth() / scale);
-		int scaledHeight = (int) (bitmap.getHeight() / scale);
-		return Bitmap.createScaledBitmap(bitmap, scaledWidth, scaledHeight, true);
-	}
+//	private Bitmap getScaledBitmap(Activity mActivity, Bitmap bitmap) {
+//		DisplayMetrics display = new DisplayMetrics();
+//		mActivity.getWindowManager().getDefaultDisplay().getMetrics(display);
+//		int screenWidth = display.widthPixels;
+//		int screenHeight = display.heightPixels;
+//		float scale = bitmap.getWidth() / screenWidth > bitmap.getHeight() / screenHeight ? bitmap.getWidth() /
+// screenWidth : bitmap.getHeight() / screenHeight;
+//		int scaledWidth = (int) (bitmap.getWidth() / scale);
+//		int scaledHeight = (int) (bitmap.getHeight() / scale);
+//		return Bitmap.createScaledBitmap(bitmap, scaledWidth, scaledHeight, true);
+//	}
 
 
     @Override
@@ -133,22 +133,27 @@ public class SketchView extends View implements View.OnTouchListener {
     }
 
 
+    @Override
     public boolean onTouch(View arg0, MotionEvent event) {
         float x = event.getX();
         float y = event.getY();
 
         switch (event.getAction()) {
+            case MotionEvent.ACTION_POINTER_DOWN:
             case MotionEvent.ACTION_DOWN:
-                touch_start(x, y);
+                touchStart(event, x, y);
                 invalidate();
                 break;
             case MotionEvent.ACTION_MOVE:
                 touch_move(event, x, y);
                 invalidate();
                 break;
+            case MotionEvent.ACTION_POINTER_UP:
             case MotionEvent.ACTION_UP:
-                touch_up();
+                touch_up(event);
                 invalidate();
+                break;
+            default:
                 break;
         }
         return true;
@@ -169,7 +174,7 @@ public class SketchView extends View implements View.OnTouchListener {
     }
 
 
-    private void touch_start(float x, float y) {
+    private void touchStart(MotionEvent event, float x, float y) {
         // Clearing undone list
         undonePaths.clear();
 
@@ -180,37 +185,40 @@ public class SketchView extends View implements View.OnTouchListener {
             m_Paint.setColor(strokeColor);
             m_Paint.setStrokeWidth(strokeSize);
         }
+        if (event.getPointerId(event.getActionIndex()) == 0) {
+            mCanTouch = true;
+            Paint newPaint = new Paint(m_Paint); // Clones the mPaint object}
 
-        Paint newPaint = new Paint(m_Paint); // Clones the mPaint object
+            // Avoids that a sketch with just erasures is saved
+            if (!(paths.size() == 0 && mode == ERASER && bitmap == null)) {
+                paths.add(new Pair<>(m_Path, newPaint));
+            }
 
-        // Avoids that a sketch with just erasures is saved
-        if (!(paths.size() == 0 && mode == ERASER && bitmap == null)) {
-            paths.add(new Pair<>(m_Path, newPaint));
+            m_Path.reset();
+            m_Path.moveTo(x, y);
+            mX = x;
+            mY = y;
         }
 
-        m_Path.reset();
-        m_Path.moveTo(x, y);
-        mX = x;
-        mY = y;
     }
 
 
     private void touch_move(MotionEvent event, float x, float y) {
         float dx = Math.abs(x - mX);
         float dy = Math.abs(y - mY);
-        if (event.getPointerCount() == 2) {
-            m_Path = null;
-        }
-        if (m_Path != null) {
+        if (mCanTouch) {
             m_Path.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
+            mX = x;
+            mY = y;
         }
-        mX = x;
-        mY = y;
     }
 
 
-    private void touch_up() {
+    private void touch_up(MotionEvent event) {
 //        m_Path.lineTo(mX, mY);
+        if (event.getPointerId(event.getActionIndex()) == 0) {
+            mCanTouch = false;
+        }
         Paint newPaint = new Paint(m_Paint); // Clones the mPaint object
 
         // Avoids that a sketch with just erasures is saved
