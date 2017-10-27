@@ -29,13 +29,15 @@ public class GallerySnapHelper extends SnapHelper {
 
 
     @Override
-    public void attachToRecyclerView(@Nullable RecyclerView recyclerView) throws IllegalStateException {
+    public void attachToRecyclerView(@Nullable RecyclerView recyclerView) throws
+            IllegalStateException {
         mRecyclerView = recyclerView;
         super.attachToRecyclerView(recyclerView);
     }
 
     @Override
-    public int[] calculateDistanceToFinalSnap(@NonNull RecyclerView.LayoutManager layoutManager, @NonNull View targetView) {
+    public int[] calculateDistanceToFinalSnap(@NonNull RecyclerView.LayoutManager layoutManager,
+                                              @NonNull View targetView) {
         int[] out = new int[2];
         if (layoutManager.canScrollHorizontally()) {
             out[0] = distanceToStart(targetView, getHorizontalHelper(layoutManager));
@@ -50,14 +52,16 @@ public class GallerySnapHelper extends SnapHelper {
     }
 
     @Nullable
-    protected LinearSmoothScroller createSnapScroller(final RecyclerView.LayoutManager layoutManager) {
+    protected LinearSmoothScroller createSnapScroller(final RecyclerView.LayoutManager
+                                                                  layoutManager) {
         if (!(layoutManager instanceof RecyclerView.SmoothScroller.ScrollVectorProvider)) {
             return null;
         }
         return new LinearSmoothScroller(mRecyclerView.getContext()) {
             @Override
             protected void onTargetFound(View targetView, RecyclerView.State state, Action action) {
-                int[] snapDistances = calculateDistanceToFinalSnap(mRecyclerView.getLayoutManager(), targetView);
+                int[] snapDistances = calculateDistanceToFinalSnap(mRecyclerView.getLayoutManager
+                        (), targetView);
                 final int dx = snapDistances[0];
                 final int dy = snapDistances[1];
                 final int time = calculateTimeForDeceleration(Math.max(Math.abs(dx), Math.abs(dy)));
@@ -74,7 +78,8 @@ public class GallerySnapHelper extends SnapHelper {
     }
 
     @Override
-    public int findTargetSnapPosition(RecyclerView.LayoutManager layoutManager, int velocityX, int velocityY) {
+    public int findTargetSnapPosition(RecyclerView.LayoutManager layoutManager, int velocityX,
+                                      int velocityY) {
         if (!(layoutManager instanceof RecyclerView.SmoothScroller.ScrollVectorProvider)) {
             return RecyclerView.NO_POSITION;
         }
@@ -106,7 +111,8 @@ public class GallerySnapHelper extends SnapHelper {
         }
 
         //在松手之后,列表最多只能滚多一屏的item数
-        int deltaThreshold = layoutManager.getWidth() / getHorizontalHelper(layoutManager).getDecoratedMeasurement(currentView);
+        int deltaThreshold = layoutManager.getWidth() / getHorizontalHelper(layoutManager)
+                .getDecoratedMeasurement(currentView);
 
         int hDeltaJump;
         if (layoutManager.canScrollHorizontally()) {
@@ -149,17 +155,20 @@ public class GallerySnapHelper extends SnapHelper {
 
     private View findStartView(RecyclerView.LayoutManager layoutManager, OrientationHelper helper) {
         if (layoutManager instanceof LinearLayoutManager) {
-            int firstChildPosition = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
+            int firstChildPosition = ((LinearLayoutManager) layoutManager)
+                    .findFirstVisibleItemPosition();
             if (firstChildPosition == RecyclerView.NO_POSITION) {
                 return null;
             }
 
-            if (((LinearLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition() == layoutManager.getItemCount() - 1) {
+            if (((LinearLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition() ==
+                    layoutManager.getItemCount() - 1) {
                 return null;
             }
 
             View firstChildView = layoutManager.findViewByPosition(firstChildPosition);
-            if (helper.getDecoratedEnd(firstChildView) >= helper.getDecoratedMeasurement(firstChildView) / 2 && helper.getDecoratedEnd(firstChildView) > 0) {
+            if (helper.getDecoratedEnd(firstChildView) >= helper.getDecoratedMeasurement
+                    (firstChildView) / 2 && helper.getDecoratedEnd(firstChildView) > 0) {
                 return firstChildView;
             } else {
                 return layoutManager.findViewByPosition(firstChildPosition + 1);
@@ -171,7 +180,8 @@ public class GallerySnapHelper extends SnapHelper {
 
 
     private int estimateNextPositionDiffForFling(RecyclerView.LayoutManager layoutManager,
-                                                 OrientationHelper helper, int velocityX, int velocityY) {
+                                                 OrientationHelper helper, int velocityX, int
+                                                         velocityY) {
         int[] distances = calculateScrollDistance(velocityX, velocityY);
         float distancePerChild = computeDistancePerChild(layoutManager, helper);
         if (distancePerChild <= 0) {

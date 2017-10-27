@@ -53,7 +53,8 @@
 //
 //    @Nullable
 //    @Override
-//    public int[] calculateDistanceToFinalSnap(@NonNull RecyclerView.LayoutManager layoutManager, @NonNull View targetView) {
+//    public int[] calculateDistanceToFinalSnap(@NonNull RecyclerView.LayoutManager
+// layoutManager, @NonNull View targetView) {
 //        int[] out = new int[2];
 //        if (layoutManager.canScrollHorizontally()) {
 //            out[0] = distanceToCenter(layoutManager, targetView,
@@ -125,7 +126,8 @@
 //     *
 //     * @param layoutManager The {@link RecyclerView.LayoutManager} associated with the attached
 //     *                      {@link RecyclerView}.
-//     * @param helper        The relevant {@link android.support.v7.widget.OrientationHelper} for the attached {@link RecyclerView}.
+//     * @param helper        The relevant {@link android.support.v7.widget.OrientationHelper}
+// for the attached {@link RecyclerView}.
 //     * @return the child view that is currently closest to the center of this parent.
 //     */
 //    @Nullable
@@ -173,7 +175,8 @@
 //        if (layoutManager.canScrollVertically()) {
 //            mStartMostChildView = findStartView(layoutManager, getVerticalHelper(layoutManager));
 //        } else if (layoutManager.canScrollHorizontally()) {
-//            mStartMostChildView = findStartView(layoutManager, getHorizontalHelper(layoutManager));
+//            mStartMostChildView = findStartView(layoutManager, getHorizontalHelper
+// (layoutManager));
 //        }
 //
 //        if (mStartMostChildView == null) {
@@ -206,7 +209,8 @@
 //
 //        return reverseLayout
 //                ? (forwardDirection ? currentPageStart - countOfpage() : currentPageStart)
-//                : (forwardDirection ? currentPageStart + countOfpage() : (currentPageStart + countOfpage() - 1));
+//                : (forwardDirection ? currentPageStart + countOfpage() : (currentPageStart +
+// countOfpage() - 1));
 //    }
 //
 //    @Nullable
@@ -235,18 +239,22 @@
 //    }
 //
 //    @Override
-//    protected LinearSmoothScroller createSnapScroller(final RecyclerView.LayoutManager layoutManager) {
+//    protected LinearSmoothScroller createSnapScroller(final RecyclerView.LayoutManager
+// layoutManager) {
 //        if (!(layoutManager instanceof RecyclerView.SmoothScroller.ScrollVectorProvider)) {
 //            return null;
 //        }
 //        return new LinearSmoothScroller(mRecyclerView.getContext()) {
 //            @Override
-//            protected void onTargetFound(View targetView, RecyclerView.State state, Action action) {
-//                int[] snapDistances = calculateDistanceToFinalSnap(mRecyclerView.getLayoutManager(),
+//            protected void onTargetFound(View targetView, RecyclerView.State state, Action
+// action) {
+//                int[] snapDistances = calculateDistanceToFinalSnap(mRecyclerView
+// .getLayoutManager(),
 //                        targetView);
 //                final int dx = snapDistances[0];
 //                final int dy = snapDistances[1];
-//                final int time = calculateTimeForDeceleration(Math.max(Math.abs(dx), Math.abs(dy)));
+//                final int time = calculateTimeForDeceleration(Math.max(Math.abs(dx), Math.abs
+// (dy)));
 //                if (time > 0) {
 //                    action.update(dx, dy, time, mDecelerateInterpolator);
 //                }
@@ -259,7 +267,8 @@
 //
 //            @Override
 //            protected int calculateTimeForScrolling(int dx) {
-//                return Math.min(MAX_SCROLL_ON_FLING_DURATION, super.calculateTimeForScrolling(dx));
+//                return Math.min(MAX_SCROLL_ON_FLING_DURATION, super.calculateTimeForScrolling
+// (dx));
 //            }
 //
 //            @Override
@@ -270,7 +279,8 @@
 //    }
 //
 //    @NonNull
-//    private OrientationHelper getVerticalHelper(@NonNull RecyclerView.LayoutManager layoutManager) {
+//    private OrientationHelper getVerticalHelper(@NonNull RecyclerView.LayoutManager
+// layoutManager) {
 //        if (mVerticalHelper == null || mVerticalHelper.mLayoutManager != layoutManager) {
 //            mVerticalHelper = OrientationHelper.createVerticalHelper(layoutManager);
 //        }

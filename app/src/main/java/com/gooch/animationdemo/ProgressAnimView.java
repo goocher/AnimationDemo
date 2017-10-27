@@ -28,15 +28,17 @@ public class ProgressAnimView extends View {
     private Paint mPaint;
     private RectF mRectF;
     private TextPaint mTextPaint;
-
+    private float progress;
+    private float currentProgress;
+    private String drawText = "0%";
+    private int mTextSize = 22;
+    private Interpolator mInterpolator = new BounceInterpolator();
     public ProgressAnimView(Context context) {
         this(context, null);
     }
-
     public ProgressAnimView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
-
     public ProgressAnimView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
@@ -54,11 +56,6 @@ public class ProgressAnimView extends View {
         mTextPaint.setAntiAlias(true);
         mTextPaint.setTextSize(mTextSize);
     }
-
-    private float progress;
-    private float currentProgress;
-    private String drawText = "0%";
-    private int mTextSize = 22;
 
     public void setTextSize(int textSize) {
         mTextSize = textSize;
@@ -82,6 +79,15 @@ public class ProgressAnimView extends View {
         canvas.drawArc(mRectF, 90f, currentProgress - 90f, false, mPaint);
     }
 
+    public ProgressAnimView setInterpolator(Interpolator interpolator) {
+        mInterpolator = interpolator;
+        return this;
+    }
+
+    public float getProgress() {
+        return progress;
+    }
+
     public ProgressAnimView setProgress(float progress) {
         if (progress == 0f) {
             throw new IllegalStateException("请初始化progress！");
@@ -91,17 +97,6 @@ public class ProgressAnimView extends View {
         }
         this.progress = progress;
         return this;
-    }
-
-    private Interpolator mInterpolator = new BounceInterpolator();
-
-    public ProgressAnimView setInterpolator(Interpolator interpolator) {
-        mInterpolator = interpolator;
-        return this;
-    }
-
-    public float getProgress() {
-        return progress;
     }
 
     public void doAnimation() {

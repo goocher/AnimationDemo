@@ -27,14 +27,16 @@ import java.io.IOException;
 public class Main4Fragment extends Fragment {
 
 
+    private static final String targetDir = Environment.getExternalStorageDirectory()
+            .getAbsolutePath();
     private FragmentMain4Binding mInflate;
     private MediaRecorder mRecorder;
     private MediaPlayer mMediaPlayer;
+    private File currentFile;
 
     public Main4Fragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,7 +82,8 @@ public class Main4Fragment extends Fragment {
     }
 
     private void initPlayer() {
-        AudioManager audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
+        AudioManager audioManager = (AudioManager) getActivity().getSystemService(Context
+                .AUDIO_SERVICE);
 
         mMediaPlayer = new MediaPlayer();
         audioManager.setMode(AudioManager.MODE_NORMAL);
@@ -93,9 +96,6 @@ public class Main4Fragment extends Fragment {
             e.printStackTrace();
         }
     }
-
-    private File currentFile;
-    private static final String targetDir = Environment.getExternalStorageDirectory().getAbsolutePath();
 
     private void initRecord() {
         mRecorder = new MediaRecorder();

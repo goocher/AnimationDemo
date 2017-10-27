@@ -12,7 +12,7 @@ import android.widget.Scroller;
  */
 
 public class FixSpeedScroller extends Scroller {
-    public int mDuration;
+    public int mDuration=10000;
 
     public FixSpeedScroller(Context context) {
         super(context);

@@ -12,17 +12,19 @@ import java.util.List;
  * Email:zhaoguangchao@100tal.com
  */
 
-public class ClassifyBean  implements Serializable{
+public class ClassifyBean implements Serializable {
 
-    private static final long serialVersionUID = -522825021104165105L;
+
+    private static final long serialVersionUID = 8005312700423228875L;
     public int code;
     public String message;
     public int ttl;
     public List<DataEntity> data;
 
-    public static class DataEntity implements Serializable{
 
-        public static final long serialVersionUID = 2825212259995373367L;
+    public static class DataEntity implements Serializable {
+        private static final long serialVersionUID = -5698955887324289359L;
+
         public String param;
         public String type;
         public String style;
@@ -30,37 +32,28 @@ public class ClassifyBean  implements Serializable{
         public BannerEntity banner;
         public List<BodyEntity> body;
 
-        public static class BannerEntity implements Serializable {
+        public static class BannerEntity {
 
-            private static final long serialVersionUID = 173564147111788696L;
             public List<BottomEntity> bottom;
 
-            public static class BottomEntity implements Serializable{
-                public static final long serialVersionUID = -8987833653937442771L;
-
+            public static class BottomEntity {
                 public int id;
                 public String title;
                 public String image;
                 public String hash;
                 public String uri;
-                @SerializedName("resource_id")
-                public int resourceId;
-                @SerializedName("request_id")
-                public String requestId;
-                @SerializedName("is_ad")
-                public boolean isAd;
-                @SerializedName("cm_mark")
-                public int cmMark;
+                public int resource_id;
+                public String request_id;
+                public boolean is_ad;
+                public int cm_mark;
                 public int index;
-                @SerializedName("server_type")
-                public int serverType;
+                public int server_type;
 
 
             }
         }
 
-        public static class BodyEntity implements Serializable{
-            public static final long serialVersionUID = -9037115765038425572L;
+        public static class BodyEntity {
 
             public String title;
             public String cover;
@@ -70,15 +63,14 @@ public class ClassifyBean  implements Serializable{
             public String gotoX;
             public int play;
             public String index;
-            @SerializedName("total_count")
-            public String totalCount;
+            public String total_count;
             public String mtime;
             public int status;
             public int favourite;
-            @SerializedName("is_ad")
-            public boolean isAd;
-            @SerializedName("cm_mark")
-            public int cmMark;
+            public boolean is_ad;
+            public int cm_mark;
+
+
         }
     }
 }

@@ -80,24 +80,28 @@ public class Main3Fragment extends Fragment {
             view.setImageResource(ints[i]);
             imageViews.add(view);
         }
+        int initIndex = Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % imageViews.size();
         BannerAdapter adapter = new BannerAdapter(getContext(), imageViews);
         mInflate.banner.setAdapter(adapter);
+        mInflate.banner.setCurrentItem(initIndex);
         mInflate.banner.setPageTransformer(true, new ZoomTransformer());
         mInflate.banner.setPageMargin(1);
-        CommonUtils.controlViewPagerSpeed(mActivity, mInflate.banner, 2000);
+        CommonUtils.controlViewPagerSpeed(mActivity, mInflate.banner, 10000);
         mAnimation = new ScaleAnimation(0.9f, 1.0f, 0.9f, 1.0f, 150, 450);
         mAnimation.setDuration(500);
         mAnimation.setFillAfter(true);
         mAnimation.setInterpolator(new Interpolator() {
             @Override
             public float getInterpolation(float input) {
-                return (float) (Math.pow(2, -10 * input) * Math.sin((input - mFactor / 4) * (2 * Math.PI) / mFactor)
+                return (float) (Math.pow(2, -10 * input) * Math.sin((input - mFactor / 4) * (2 *
+                        Math.PI) / mFactor)
                         + 0.9);
             }
         });
         mInflate.banner.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onPageScrolled(int position, float positionOffset, int
+                    positionOffsetPixels) {
 
             }
 

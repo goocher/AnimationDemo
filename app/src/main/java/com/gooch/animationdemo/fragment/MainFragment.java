@@ -46,8 +46,10 @@ public class MainFragment extends Fragment {
     }
 
     private void initView() {
-        final Animation scaleAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.scale_anim);
-        final Animation translatAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.translate_anim);
+        final Animation scaleAnimation = AnimationUtils.loadAnimation(getContext(), R.anim
+                .scale_anim);
+        final Animation translatAnimation = AnimationUtils.loadAnimation(getContext(), R.anim
+                .translate_anim);
         mInflate.btnScale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,21 +102,26 @@ public class MainFragment extends Fragment {
         Keyframe frame8 = Keyframe.ofFloat(0.8f, 20f);
         Keyframe frame9 = Keyframe.ofFloat(0.9f, -20f);
         Keyframe frame10 = Keyframe.ofFloat(1, 0);
-        PropertyValuesHolder valuesHolder = PropertyValuesHolder.ofKeyframe("rotation", frame0, frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, frame10);
-        ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(mInflate.imageView, valuesHolder);
+        PropertyValuesHolder valuesHolder = PropertyValuesHolder.ofKeyframe("rotation", frame0,
+                frame1, frame2, frame3, frame4, frame5, frame6, frame7, frame8, frame9, frame10);
+        ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(mInflate.imageView,
+                valuesHolder);
         objectAnimator.setDuration(2000);
         objectAnimator.setRepeatCount(ValueAnimator.INFINITE);
         objectAnimator.start();
     }
 
     public void doAnimSet() {
-        ObjectAnimator tv1BgAnimator = ObjectAnimator.ofInt(mInflate.btnApha, "BackgroundColor", 0xffff00ff, 0xffffff00, 0xffff00ff);
+        ObjectAnimator tv1BgAnimator = ObjectAnimator.ofInt(mInflate.btnApha, "BackgroundColor",
+                0xffff00ff, 0xffffff00, 0xffff00ff);
         tv1BgAnimator.setStartDelay(2000);
-        ObjectAnimator tv1TranslateY = ObjectAnimator.ofFloat(mInflate.btnApha, "translationY", 0, 400, 0);
+        ObjectAnimator tv1TranslateY = ObjectAnimator.ofFloat(mInflate.btnApha, "translationY",
+                0, 400, 0);
         tv1TranslateY.setStartDelay(3000);
-        ObjectAnimator tv2TranslateY = ObjectAnimator.ofFloat(mInflate.btnScale, "translationY", 0, 400, 0);
+        ObjectAnimator tv2TranslateY = ObjectAnimator.ofFloat(mInflate.btnScale, "translationY",
+                0, 400, 0);
         AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(tv1BgAnimator,tv1TranslateY);
+        animatorSet.playTogether(tv1BgAnimator, tv1TranslateY);
         animatorSet.setStartDelay(2000);
         animatorSet.setDuration(2000);
         animatorSet.start();

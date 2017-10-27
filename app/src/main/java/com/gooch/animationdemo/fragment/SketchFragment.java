@@ -45,7 +45,8 @@ public class SketchFragment extends Fragment {
                 .asBitmap()
                 .into(new SimpleTarget<Bitmap>() {
                     @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap>
+                            glideAnimation) {
                         mBinding.svCanvas.setBackgroundBitmap(getActivity(), resource);
                     }
                 });

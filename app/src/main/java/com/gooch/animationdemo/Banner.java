@@ -1,12 +1,17 @@
 package com.gooch.animationdemo;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <pre>
@@ -52,15 +57,27 @@ public class Banner extends ViewPager {
                     @Override
                     public void run() {
                         if (Banner.this.getCurrentItem() < Banner.this.getChildCount()) {
-                            Banner.this.setCurrentItem(Banner.this.getCurrentItem() + 1, true);
-                        } else {
-                            Banner.this.setCurrentItem(0);
+                            Banner.this.setCurrentItem((Banner.this.getCurrentItem() + 1), true);
                         }
                     }
                 });
 
             }
-        }, 1000, 1500);
+        }, 1000);
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(10, new ThreadFactory() {
+
+
+            @Override
+            public Thread newThread(@NonNull Runnable r) {
+                return null;
+            }
+        });
+        executorService.scheduleWithFixedDelay(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }, 1000, 2000, TimeUnit.MILLISECONDS);
     }
 
     @Override
@@ -69,9 +86,14 @@ public class Banner extends ViewPager {
             case MotionEvent.ACTION_DOWN:
                 stopTimer();
                 break;
+            case MotionEvent.ACTION_MOVE:
+                getParent().requestDisallowInterceptTouchEvent(true);
+                break;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
                 startTimer();
+                break;
+            default:
                 break;
         }
         return super.onTouchEvent(ev);

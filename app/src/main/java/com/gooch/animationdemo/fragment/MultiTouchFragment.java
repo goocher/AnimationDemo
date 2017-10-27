@@ -30,7 +30,8 @@ public class MultiTouchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_multi_touch, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_multi_touch, container,
+                false);
         init();
         return mBinding.getRoot();
     }

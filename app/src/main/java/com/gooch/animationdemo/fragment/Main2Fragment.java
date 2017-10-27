@@ -43,7 +43,8 @@ public class Main2Fragment extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            mInflate.pvAnim.setProgress(70f).setInterpolator(new OvershootInterpolator()).doAnimation();
+            mInflate.pvAnim.setProgress(70f).setInterpolator(new OvershootInterpolator())
+                    .doAnimation();
         }
     }
 

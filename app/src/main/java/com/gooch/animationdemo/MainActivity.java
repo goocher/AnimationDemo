@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
 import com.gooch.animationdemo.databinding.ActivityMainBinding;
+import com.gooch.animationdemo.fragment.ClassifyFragment;
 import com.gooch.animationdemo.fragment.Main2Fragment;
 import com.gooch.animationdemo.fragment.Main3Fragment;
 import com.gooch.animationdemo.fragment.Main4Fragment;
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViewPager() {
         List<Fragment> fragments = new ArrayList<>();
+        fragments.add(new ClassifyFragment());
         fragments.add(new MainFragment());
         fragments.add(new SpenFragment());
         fragments.add(new MultiTouchFragment());
@@ -55,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
         fragments.add(new SnapFragment());
         fragments.add(new RedoAndUndoFragment());
         String[] stringArray = getResources().getStringArray(R.array.title_array);
-        MainFragmentAdapter adapter = new MainFragmentAdapter(getSupportFragmentManager(), fragments);
+        MainFragmentAdapter adapter = new MainFragmentAdapter(getSupportFragmentManager(),
+                fragments);
         adapter.setStrings(Arrays.asList(stringArray));
         mMainBinding.vpPager.setAdapter(adapter);
     }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.gooch.animationdemo.DrawOrderView xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/iv_snap"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@mipmap/aa"/>
+        android:src="@mipmap/aa" />
 </com.gooch.animationdemo.DrawOrderView>

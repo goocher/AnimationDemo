@@ -32,11 +32,13 @@ public class SpenFragment extends Fragment {
 
     private FragmentSpenBinding mBinding;
     private Activity mContext;
+    private SpenSurfaceView mSpenSurfaceView;
+    private SpenNoteDoc mSpenNoteDoc;
+    private SpenPageDoc mSpenPageDoc;
 
     public SpenFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,13 +55,10 @@ public class SpenFragment extends Fragment {
         mContext = (Activity) context;
     }
 
-    private SpenSurfaceView mSpenSurfaceView;
-    private SpenNoteDoc mSpenNoteDoc;
-    private SpenPageDoc mSpenPageDoc;
-
 //    private void init() {
 //        mSpenSurfaceView = new SpenSurfaceView(mContext);
-//        mSpenSurfaceView.setToolTypeAction(SpenSurfaceView.TOOL_FINGER, SpenSurfaceView.ACTION_STROKE);
+//        mSpenSurfaceView.setToolTypeAction(SpenSurfaceView.TOOL_FINGER, SpenSurfaceView
+// .ACTION_STROKE);
 //
 //        mBinding.llSpenContainer.addView(mSpenSurfaceView);
 //        Display display = mContext.getWindowManager().getDefaultDisplay();
@@ -73,7 +72,8 @@ public class SpenFragment extends Fragment {
 ////        } catch (Exception e) {
 ////            e.printStackTrace();
 ////        }
-//        String url = "http://planner-server.oss-cn-beijing.aliyuncs.com/analysis/pciture/2017-07-02/upKnowledgeNote1498917868590.png";
+//        String url = "http://planner-server.oss-cn-beijing.aliyuncs
+// .com/analysis/pciture/2017-07-02/upKnowledgeNote1498917868590.png";
 //        Observable.just(url)
 //                .subscribeOn(Schedulers.io())
 //                .map(new Function<String, File>() {
@@ -91,7 +91,8 @@ public class SpenFragment extends Fragment {
 //                            public void run() {
 //                                try {
 //                                    try {
-//                                        mSpenNoteDoc = new SpenNoteDoc(mContext, file.getAbsolutePath(), mSpenSurfaceView.getWidth(), SpenNoteDoc.MODE_WRITABLE, true);
+//                                        mSpenNoteDoc = new SpenNoteDoc(mContext, file
+// .getAbsolutePath(), mSpenSurfaceView.getWidth(), SpenNoteDoc.MODE_WRITABLE, true);
 //                                    } catch (SpenUnsupportedTypeException e) {
 //                                        e.printStackTrace();
 //                                    } catch (SpenUnsupportedVersionException e) {
@@ -103,7 +104,8 @@ public class SpenFragment extends Fragment {
 //                                if (mSpenNoteDoc.getPageCount() == 0) {
 //                                    mSpenPageDoc = mSpenNoteDoc.appendPage();
 //                                } else {
-//                                    mSpenPageDoc = mSpenNoteDoc.getPage(mSpenNoteDoc.getLastEditedPageIndex());
+//                                    mSpenPageDoc = mSpenNoteDoc.getPage(mSpenNoteDoc
+// .getLastEditedPageIndex());
 //                                }
 ////                                    mSpenPageDoc.setBackgroundColor(0xFFD6E6F5);
 ////                                mSpenPageDoc.setBackgroundImage(file.getAbsolutePath());
@@ -117,8 +119,10 @@ public class SpenFragment extends Fragment {
 //                    }
 //                });
 //        if (!isSpenFeatureEnabled) {
-//            mSpenSurfaceView.setToolTypeAction(SpenSurfaceView.TOOL_FINGER, SpenSurfaceView.ACTION_STROKE);
-//            Toast.makeText(mContext, "Device does not support Spen. \n You can draw stroke by finger.", Toast.LENGTH_SHORT).show();
+//            mSpenSurfaceView.setToolTypeAction(SpenSurfaceView.TOOL_FINGER, SpenSurfaceView
+// .ACTION_STROKE);
+//            Toast.makeText(mContext, "Device does not support Spen. \n You can draw stroke by
+// finger.", Toast.LENGTH_SHORT).show();
 //        }
 //    }
 

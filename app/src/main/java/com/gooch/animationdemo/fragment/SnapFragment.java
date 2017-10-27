@@ -43,8 +43,10 @@ public class SnapFragment extends Fragment {
     }
 
     private void init() {
-        mBinding.rvSnap.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-//        mBinding.rvSnap.setLayoutManager(new GridLayoutManager(getContext(), 3, GridLayoutManager.HORIZONTAL, false));
+        mBinding.rvSnap.setLayoutManager(new LinearLayoutManager(getContext(),
+                LinearLayoutManager.VERTICAL, false));
+//        mBinding.rvSnap.setLayoutManager(new GridLayoutManager(getContext(), 3,
+// GridLayoutManager.HORIZONTAL, false));
         mBinding.rvSnap.setAdapter(new RecyclerView.Adapter() {
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -71,7 +73,8 @@ public class SnapFragment extends Fragment {
                 }
             }
         });
-        LayoutAnimationController layoutAnimationController = AnimationUtils.loadLayoutAnimation(getContext(), R.anim.layout_anim);
+        LayoutAnimationController layoutAnimationController = AnimationUtils.loadLayoutAnimation
+                (getContext(), R.anim.layout_anim);
         layoutAnimationController.setInterpolator(new DecelerateInterpolator());
         mBinding.rvSnap.setLayoutAnimation(layoutAnimationController);
         SnapHelper snapHelper = new PagerSnapHelper();
